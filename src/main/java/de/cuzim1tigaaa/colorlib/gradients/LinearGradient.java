@@ -1,19 +1,16 @@
 package de.cuzim1tigaaa.colorlib.gradients;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 
 import java.awt.*;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LinearGradient implements Gradient {
 
-	private final Pattern pattern
-			= Pattern.compile("<(#([a-fA-F0-9]){6})>");
-
 	@Override
 	public String translate(String message) {
-		Matcher matcher = pattern.matcher(message);
+		Matcher matcher = Patterns.linearGradient.matcher(message);
 		int start = -1, end;
 		String lastGroup = null;
 		StringBuilder finalMessage = new StringBuilder();
@@ -28,7 +25,7 @@ public class LinearGradient implements Gradient {
 			lastGroup = matcher.group(1);
 			start = matcher.end();
 		}
-		return finalMessage.toString();
+		return ChatColor.translateAlternateColorCodes('&', finalMessage.toString());
 	}
 
 	private String interpolateSection(String from, String txt, String to) {
@@ -37,22 +34,26 @@ public class LinearGradient implements Gradient {
 		int r2 = c2.getRed(), g2 = c2.getGreen(), b2 = c2.getBlue();
 		int length = txt.replace(" ", "").length();
 
-		int rDelta = (r2 - r1) / length;
-		int gDelta = (g2 - g1) / length;
-		int bDelta = (b2 - g1) / length;
+		int rDelta = (r2 - r1);
+		int gDelta = (g2 - g1);
+		int bDelta = (b2 - b1);
 
 		StringBuilder builder = new StringBuilder();
+		int tLength = 0;
 		for(int i = 0; i < txt.length(); i++) {
 			if(txt.charAt(i) == ' ') {
 				builder.append(' ');
 				continue;
 			}
 
-			int r = r1 + rDelta * i;
-			int g = g1 + gDelta * i;
-			int b = b1 + bDelta * i;
-			builder.append(ChatColor.of(String.format("#%02x%02x%02x", r, g, b)).toString())
-					.append(txt.charAt(i));
+			double t = (length > 1) ? (double) tLength++ / (length - 1) : 0;
+
+			int r = (int) (r1 + (rDelta * t));
+			int g = (int) (g1 + (gDelta * t));
+			int b = (int) (b1 + (bDelta * t));
+
+			builder.append(ChatColor.of(String.format("#%02x%02x%02x", r, g, b))
+					.toString()).append(txt.charAt(i));
 		}
 		return builder.toString();
 	}

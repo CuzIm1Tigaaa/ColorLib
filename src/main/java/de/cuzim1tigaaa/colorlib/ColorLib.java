@@ -1,16 +1,26 @@
 package de.cuzim1tigaaa.colorlib;
 
 import de.cuzim1tigaaa.colorlib.gradients.Gradient;
+import de.cuzim1tigaaa.colorlib.gradients.LinearGradient;
 import de.cuzim1tigaaa.colorlib.gradients.SingleColor;
 import net.md_5.bungee.api.ChatColor;
 
+import java.util.List;
 import java.util.Set;
 
 public class ColorLib {
 
+	public static final List<Gradient> activeGradients = List.of(
+			new SingleColor(),
+			new LinearGradient()
+	);
+
 	public static String format(String message) {
-		Gradient singleColor = new SingleColor();
-		return ChatColor.translateAlternateColorCodes('&', singleColor.translate(message));
+		for(Gradient gradient : activeGradients) {
+			message = gradient.translate(message);
+			System.out.println(message);
+		}
+		return ChatColor.translateAlternateColorCodes('&', message);
 	}
 
 	public static String format(String message, Gradient gradient) {
