@@ -6,7 +6,7 @@
 
     <groupId>de.cuzim1tigaaa.colorlib</groupId>
     <artifactId>colorlib</artifactId>
-    <version>2.7-SNAPSHOT</version>
+    <version>3.0</version>
     <url>https://github.com/CuzIm1Tigaaa/ColorLib</url>
 
     <issueManagement>
@@ -36,13 +36,13 @@
         </developer>
     </developers>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/CuzIm1Tigaaa/colorlib</url>
-        </repository>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>github</id>-->
+<!--            <name>GitHub Packages</name>-->
+<!--            <url>https://maven.pkg.github.com/CuzIm1Tigaaa/colorlib</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
     <profiles>
         <profile>
