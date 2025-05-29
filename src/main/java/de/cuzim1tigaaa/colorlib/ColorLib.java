@@ -20,11 +20,11 @@ public class ColorLib {
 	}
 
 	public static String format(String message, Gradient gradient) {
-		return gradient.translate(format(message));
+		return format(gradient.translate(message));
 	}
 
 	public static String format(String message, Object... args) {
-		return String.format(format(message), args);
+		return format(String.format(message, args));
 	}
 
 	public static String format(String message, Set<Gradient> gradient, Object... args) {

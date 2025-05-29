@@ -1,4 +1,4 @@
-package de.cuzim1tigaaa.colorlib.gradients;
+package de.cuzim1tigaaa.colorlib;
 
 import java.util.regex.Pattern;
 
