@@ -6,7 +6,7 @@ import net.md_5.bungee.api.ChatColor;
 import java.awt.*;
 import java.util.regex.Matcher;
 
-public class LinearGradient implements Gradient {
+public class RadialGradient implements Gradient {
 
 	@Override
 	public String translate(String message) {
@@ -32,17 +32,14 @@ public class LinearGradient implements Gradient {
 		Color c1 = Color.decode(from);
 		Color c2 = Color.decode(to);
 		int length = txt.replace(" ", "").length();
+		double center = Math.floor(length / 2.0);
 
 		StringBuilder builder = new StringBuilder();
-		int tLength = 0;
-		for (char ch : txt.toCharArray()) {
-			if (ch == ' ') {
-				builder.append(' ');
-				continue;
-			}
+		char[] chars = txt.toCharArray();
 
-			double t = (length > 1) ? (double) tLength++ / (length - 1) : 0;
-			builder.append(Gradient.interpolate(c1, c2, t)).append(ch);
+		for(int i = 0; i < length; i++) {
+			double distance = Math.abs(i - center) / center;
+			builder.append(Gradient.interpolate(c1, c2, distance)).append(chars[i]);
 		}
 		return builder.toString();
 	}
