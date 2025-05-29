@@ -4,9 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.cuzim1tigaaa.colorlib</groupId>
+    <groupId>io.github.cuzim1tigaaa</groupId>
     <artifactId>colorlib</artifactId>
     <version>3.0</version>
+
+    <name>ColorLib</name>
+    <description>A small Java library for color formatting in Minecraft plugins.</description>
     <url>https://github.com/CuzIm1Tigaaa/ColorLib</url>
 
     <issueManagement>
